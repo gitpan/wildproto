@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use wildproto;
+
+sub ok {
+  my ($num, $ok) = @_;
+  $ok or print "not ";
+  print STDOUT "ok $num\n";
+  $ok or die("not ok $num\n");
+} 
+
+sub funny(\?) {
+  my $any = shift;
+  { SCALAR => '$', HASH => '%', ARRAY => '@', CODE => '&' }->{ref $any}
+}
+
+ok 1, funny($x) eq '$';
+ok 2, funny(@x) eq '@';
+ok 3, funny(%x) eq '%';
+ok 4, funny(&x) eq '&';
+
+exit 0;
