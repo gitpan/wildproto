@@ -9,6 +9,8 @@ sub ok {
   $ok or die("not ok $num\n");
 } 
 
+print "1..4\n";
+
 sub funny(\?) {
   my $any = shift;
   { SCALAR => '$', HASH => '%', ARRAY => '@', CODE => '&' }->{ref $any}
